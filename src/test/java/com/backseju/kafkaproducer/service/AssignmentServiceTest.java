@@ -4,7 +4,6 @@ import com.backseju.kafkaproducer.entity.Assignment;
 import com.backseju.kafkaproducer.repository.AssignmentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.io.TempDir;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -52,6 +51,6 @@ class AssignmentServiceTest {
         savedFile.delete();
 
         then(assignmentRepository).should().save(any());
-        then(kafkaProducerService).should().sendMessage(String.valueOf(assignmentId));
+        then(kafkaProducerService).should().sendMessage(assignmentId);
     }
 }

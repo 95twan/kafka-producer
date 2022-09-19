@@ -17,7 +17,7 @@ public class KafkaProducerController {
     }
 
     @PostMapping
-    public String sendMessage(@RequestParam("message") String message) {
+    public String sendMessage(@RequestParam("message") Long message) {
         kafkaProducerService.sendMessage(message);
         return "success";
     }
