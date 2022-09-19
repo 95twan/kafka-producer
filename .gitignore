@@ -1,3 +1,6 @@
+secret.yml
+application-test.yml
+
 HELP.md
 build/
 !gradle/wrapper/gradle-wrapper.jar
