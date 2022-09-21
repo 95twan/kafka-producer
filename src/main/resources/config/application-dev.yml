@@ -22,4 +22,4 @@ server:
   port: 8080
 
 assignment:
-  dir: /Users/twan/Desktop/project-oj/upload
+  dir: /Users/twan/Desktop/project-oj/upload/
