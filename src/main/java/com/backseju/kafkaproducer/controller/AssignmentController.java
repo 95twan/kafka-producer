@@ -4,7 +4,6 @@ import com.backseju.kafkaproducer.service.AssignmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/assignments")
@@ -13,11 +12,11 @@ public class AssignmentController {
 
     private final AssignmentService assignmentService;
 
-    @PostMapping("/file")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String uploadAssignmentFile(@RequestParam(name = "assignment") MultipartFile assignment) {
+    public String uploadAssignmentFile(@RequestParam(name = "assignmentUrl") String assignmentUrl) {
 
-        assignmentService.saveAssignmentFile(assignment);
+        assignmentService.saveAssignment(assignmentUrl);
 
         return "success";
     }

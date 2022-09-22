@@ -7,14 +7,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -31,24 +26,25 @@ class AssignmentServiceTest {
     private AssignmentService assignmentService;
 
     @Test
-    void saveAssignmentFile() throws IOException {
+    void saveAssignment() throws IOException {
         // give
-        String fileName = "dummy.zip";
-        FileInputStream fileInputStream = new FileInputStream("/Users/twan/Desktop/project-oj/" + fileName);
-        MockMultipartFile file = new MockMultipartFile("assignment", fileName, MediaType.MULTIPART_FORM_DATA_VALUE, fileInputStream);
+//        String fileName = "dummy.zip";
+//        FileInputStream fileInputStream = new FileInputStream("/Users/twan/Desktop/project-oj/" + fileName);
+//        MockMultipartFile file = new MockMultipartFile("assignment", fileName, MediaType.MULTIPART_FORM_DATA_VALUE, fileInputStream);
+        String assignmentUrl = "/Users/twan/Desktop/project-oj/upload/dummy.zip";
 
         Long assignmentId = 1L;
         given(assignmentRepository.save(any())).willReturn(
-                Assignment.builder().id(assignmentId).build()
+                Assignment.builder().id(assignmentId).uploadUrl(assignmentUrl).build()
         );
 
         // when
-        assignmentService.saveAssignmentFile(file);
+        assignmentService.saveAssignment(assignmentUrl);
 
         // then
-        File savedFile = new File(fileName);
-        assertThat(savedFile).isFile();
-        savedFile.delete();
+//        File savedFile = new File(fileName);
+//        assertThat(savedFile).isFile();
+//        savedFile.delete();
 
         then(assignmentRepository).should().save(any());
         then(kafkaProducerService).should().sendMessage(assignmentId);

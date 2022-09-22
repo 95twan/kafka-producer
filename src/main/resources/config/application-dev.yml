@@ -11,15 +11,8 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.LongSerializer
-  servlet:
-    multipart:
-      max-file-size: 50MB
-      max-request-size: 50MB
   config:
     import: file:./src/main/resources/config/secret.yml
 
 server:
   port: 8080
-
-assignment:
-  dir: /Users/twan/Desktop/project-oj/upload/
