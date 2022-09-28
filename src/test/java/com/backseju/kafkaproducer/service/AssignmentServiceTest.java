@@ -47,6 +47,6 @@ class AssignmentServiceTest {
 //        savedFile.delete();
 
         then(assignmentRepository).should().save(any());
-        then(kafkaProducerService).should().sendMessage(assignmentId);
+        then(kafkaProducerService).should().sendMessage(any());
     }
 }

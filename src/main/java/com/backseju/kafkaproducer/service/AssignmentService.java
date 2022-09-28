@@ -17,6 +17,6 @@ public class AssignmentService {
     public void saveAssignment(String assignmentUrl) {
         Assignment assignment = assignmentRepository.save(Assignment.builder().uploadUrl(assignmentUrl).build());
 
-        kafkaProducerService.sendMessage(assignment.getId());
+        kafkaProducerService.sendMessage(assignment);
     }
 }
